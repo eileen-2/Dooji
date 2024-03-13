@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="bg-image">
+    <h1 class="text-center py-5">My Log</h1>
+    {% if user.is_authenticated %}
+    <div class="container">
+        <h2>게시글 목록</h2>
+        <div class="row">
+            {% for blog in object_list %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <a href="{% url 'blog:blog_detail' blog.pk %}">
+                        {% if blog.thumb_image %}
+                        <img src="{{ blog.thumb_image.url }}" class="card-img-top" alt="{{ blog.title }} thumbnail">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ blog.title }}</h5>
+                            <p class="card-text">{{ blog.content|truncatewords:20 }}</p>
+                            <p class="card-text">
+                                <small class="text-muted">{{ blog.view_count }} views · {{ blog.created_at|timesince }} ago</small>
+                            </p>
+                            <p class="card-text">
+                                <small class="text-muted">Posted by {{ blog.author }}</small>
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div> 
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+        <p>You need to be logged in to view the blog list.</p>
+        <a href="{% url 'accounts:login' %}">Login</a>
+    {% endif %}
+<div class="container">
+    <!-- 여기에 추가 콘텐츠 렌더링 -->
+</div>
+{% endblock %}

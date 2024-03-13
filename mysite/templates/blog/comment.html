@@ -1,0 +1,14 @@
+{% for comment in post.comments.all %}
+    <!-- 상위 댓글 렌더링 -->
+    <div>
+        {{ comment.author }} - {{ comment.content }}
+        {% if comment.replies.all %}
+            {% for reply in comment.replies.all %}
+                <!-- 대댓글 렌더링 -->
+                <div class="ml-4">
+                    {{ reply.author }} - {{ reply.content }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endfor %}

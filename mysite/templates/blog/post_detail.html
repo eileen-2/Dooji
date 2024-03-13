@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ blog.title }}</h1>
+    <p>Posted by {{ blog.author }} on {{ blog.created_at|date:"F d, Y" }}</p>
+
+    {% if blog.thumb_image %}
+    <img src="{{ blog.thumb_image.url }}" class="img-fluid img-thumbnail mb-3" alt="{{ blog.title }} thumbnail">
+    {% endif %}
+
+    {% if blog.file_upload %}
+    <div class="mb-3">
+        <video controls>
+            <source src="{{ blog.file_upload.url }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    {% endif %}
+
+    <p>{{ blog.content }}</p>
+
+    <div class="mb-3">
+        {% for tag in blog.tags.all %}
+        <span class="badge bg-primary">{{ tag.name }}</span>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        <form action="{% url 'blog:like_create' pk=blog.pk %}" method="post" class="d-inline">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">
+                {% if liked %}
+                Unlike
+                {% else %}
+                Like
+                {% endif %}
+            </button>
+        </form>
+    </div>
+
+    <h3>Comments</h3>
+    <a href="{% url 'blog:comment_create' blog.pk %}" class="btn btn-primary mb-3">Add Comment</a>
+
+    {% for comment in blog.comment_set.all %}
+    {% if not comment.is_deleted %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">{{ comment.author }}</h5>
+            <p class="card-text">{{ comment.content }}</p>  <!-- 댓글 내용 추가 -->
+            {% if comment.author == user %}
+            <a href="{% url 'blog:comment_update' comment.pk %}" class="btn btn-secondary btn-sm">Edit</a>
+            <a href="{% url 'blog:comment_delete' comment.pk %}" class="btn btn-danger btn-sm">Delete</a>
+            {% endif %}
+        </div>
+        <div class="card-footer text-muted">
+            Posted on {{ comment.created_at|date:"F d, Y" }}
+        </div>
+    </div>
+
+    {% for reply in comment.replies.all %}
+    {% if not reply.is_deleted %}
+    <div class="card mb-3 ms-5">
+        <div class="card-body">
+            <h5 class="card-title">{{ reply.author }}</h5>
+            <p class="card-text">{{ reply.content }}</p>  <!-- 대댓글 내용 추가 -->
+            {% if reply.author == user %}
+            <a href="{% url 'blog:comment_update' reply.pk %}" class="btn btn-secondary btn-sm">Edit</a>
+            <a href="{% url 'blog:comment_delete' reply.pk %}" class="btn btn-danger btn-sm">Delete</a>
+            {% endif %}
+        </div>
+        <div class="card-footer text-muted">
+            Posted on {{ reply.created_at|date:"F d, Y" }}
+        </div>
+    </div>
+    {% else %}
+    <div class="card mb-3 ms-5">
+        <div class="card-body">
+            <p class="card-text">관리자에 의해 더이상 표시되지 않습니다.</p>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    {% else %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <p class="card-text">관리자에 의해 더이상 표시되지 않습니다.</p>
+        </div>
+    </div>
+    {% endif %}
+    {% empty %}
+    <p>No comments yet.</p>
+    {% endfor %}
+
+    {% if blog.author == user %}
+    <div>
+        <a href="{% url 'blog:blog_update' blog.pk %}" class="btn btn-secondary">Edit Blog</a>
+        <a href="{% url 'blog:blog_delete' blog.pk %}" class="btn btn-danger">Delete Blog</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

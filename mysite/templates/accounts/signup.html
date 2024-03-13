@@ -1,0 +1,53 @@
+{% extends 'base_login.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travelog - Sign Up</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #ffff33;
+        }
+        .container {
+            max-width: 400px;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-center mb-4">
+            <img src="{% static 'img\logo-no-background.png' %}" alt="Travelog Logo" class="img-fluid">
+        </div>
+       
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="id_id" class="form-label" placeholder="아이디">ID</label>
+                {{ form.username }}
+            </div>
+            <div class="mb-3">
+                <label for="password_id" class="form-label" placeholder="대문자, 소문자, 숫자, 특수문자 각 1개 이상 포함">비밀번호</label>
+                {{ form.password1 }}
+            </div>
+            <div class="mb-3">
+                <label for="confirm_password_id" class="form-label" placeholder="대문자, 소문자, 숫자, 특수문자 각 1개 이상 포함">비밀번호 확인</label>
+                {{ form.password2 }}
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">이메일주소</label>
+                <input id="email_id" type="text" name="email" placeholder="xxxx@gmail.com">
+                {{ form.email }}
+            </div>
+            <div class="mb-3">
+                <label for="phone_id" class="form-label">전화번호</label>
+                <input type="text_id" class="form-control" id="phone" placeholder="010-0000-0000">
+            </div>
+            <button type="submit" class="btn btn-primary w-100 mb-3">회원가입</button>
+        </form>
+    </div>
+</body>
+</html>
