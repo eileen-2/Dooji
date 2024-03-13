@@ -78,6 +78,7 @@ travelog@gmail.com
 ┗ 📜README.md
 
 ### 4.2 개발 일정(WBS)
+<img src="img\schedule.png" width="100%">
 ```mermaid
 gantt
 1(1. 프로젝트 계획 및 준비) --> 1.1(1.1 프로젝트 목표 및 범위 설정)
