@@ -79,33 +79,7 @@ travelog@gmail.com
 
 ### 4.2 개발 일정(WBS)
 <img src="img\schedule.png" width="100%">
-```mermaid
-gantt
-1(1. 프로젝트 계획 및 준비) --> 1.1(1.1 프로젝트 목표 및 범위 설정)
-1 --> 1.2(1.2 필요 기술 및 도구 조사)
-1 --> 1.3(1.3 개발 환경설정)
-1 --> 1.4(1.4 GitHub 레포지토리 설정)
-1 --> 1.5(1.5 프로젝트명 상표 확인(KIPRIS))
 
-2(2. weniv, naver api 사용) --> 2.1(2.1 weniv api 복사 및 사용)
-
-3(3. 디자인 및 사용자 인터페이스 구현) --> 3.1(3.1 사용자 인터페이스 디자인 (kakao oven))
-3 --> 3.2(3.2 HTML과 CSS를 이용한 웹 페이지 구현)
-
-4(4. 블로그 기능구현) --> 4.1(4.1 Django Admin을 이용한 게시글 읽기 및 메인페이지 구현)
-4 --> 4.2(4.2 블로그 CRUD 기능 구현)
-4 --> 4.3(4.3 로그인/회원가입 기능을 이용 블로그 구현)
-4 --> 4.4(4.4 블로그 기능 외 추가 기능 작성 및 배포)
-
-5(5. 테스트 및 디버깅) --> 5.1(5.1 각 기능별 테스트 진행)
-5 --> 5.2(5.2 버그 및 이슈 해결)
-
-6(6. 코드 리뷰 및 개선) --> 6.1(6.1 코드 리뷰 진행)
-6 --> 6.2(6.2 리뷰를 통한 코드 개선)
-
-7(7. 프로젝트 제출) --> 7.1(7.1 GitHub에 최종 코드 업데이트)
-
-```
 
 ### 6.21 화면 설계
  
@@ -116,24 +90,24 @@ gantt
             <td>회원가입</td>
         </tr>
         <tr>
-            <td><img src="img\main.png" width="100%"></td>
-            <td><img src="img\signup.png" width="100%"></td>
+            <td><img src="img\main.png" width="100%" height=80%></td>
+            <td><img src="img\signup.png" width="100%" height=80%></td>
         </tr>
         <tr>
             <td>프로필</td>
             <td>여행로그목록</td>
         </tr>
         <tr>
-            <td><img src="img\profile.png" width="100%"></td>
-            <td><img src="img\blog_list.png" width="100%"></td>
+            <td><img src="img\profile.png" width="100%" height=80%></td>
+            <td><img src="img\blog_list.png" width="100%" height=80%></td>
         </tr>
         <tr>
             <td>여행로그상세페이지</td>
             <td>페이지없음</td>
         </tr>
         <tr>
-            <td><img src="img\blog_detail.png" width="100%"></td>
-            <td><img src="img\4.png" width="100%"></td>
+            <td><img src="img\blog_detail.png" width="100%" height=80%></td>
+            <td><img src="img\4.png" width="100%" height=80%></td>
         </tr>
     </tbody>
 </table>
