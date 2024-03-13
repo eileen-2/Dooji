@@ -107,7 +107,7 @@ travelog@gmail.com
         </tr>
         <tr>
             <td><img src="img\blog_detail.png" width="100%" height=80%></td>
-            <td><img src="img\4.png" width="100%" height=80%></td>
+            <td><img src="img\4.png" width="100%" height=60%></td>
         </tr>
     </tbody>
 </table>
