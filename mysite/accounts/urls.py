@@ -7,7 +7,7 @@ from django.http import HttpResponseBadRequest
 app_name = 'accounts'
 
 class CustomLogoutView(LogoutView):
-    http_method_names = ['get', 'post'] 
+    http_method_names = ['get', 'post']  
 
     def dispatch(self, request, *args, **kwargs):
         if request.method.lower() not in self.http_method_names:
