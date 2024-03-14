@@ -1,6 +1,4 @@
 
-
-
 # Travelog
 
 # 여행 공유 커뮤니티 'Travelog'
