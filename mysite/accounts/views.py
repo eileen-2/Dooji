@@ -9,8 +9,17 @@ from django.http import HttpResponseBadRequest
 
 class CustomLoginView(LoginView):
     template_name = 'accounts/login.html'
-    success_url = reverse_lazy('blog:post_list')
 
+    def form_valid(self, form):
+        username = form.cleaned_data['username']
+        password = form.cleaned_data['password']
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            login(self.request, user)
+            return redirect('blog:post_list')
+        else:
+            return self.form_invalid(form)
     
 class SignupView(CreateView):
     form_class = UserCreationForm
